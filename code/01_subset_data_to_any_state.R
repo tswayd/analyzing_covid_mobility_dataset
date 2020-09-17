@@ -14,3 +14,5 @@ source("code/functions/subset_mobility_data_to_state.R")
 subset_mobility_data_to_state(
   input_file_name = "data/raw_data/applemobilitytrends-2020-09-12.csv",
   state_to_subset = "Massachusetts")
+
+# comment
