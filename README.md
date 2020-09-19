@@ -9,6 +9,7 @@ https://covid19.apple.com/mobility
 
 ### Log
 
+* 2020-09-19: Loaded latest data from Apple Mobility Covid data (09-17-2020).
 * 2020-09-16: Initial commit of README into repository. Eventually commited all files into repository. Remembered to connect to email for github instead of normal email.
 * 2020-09-13: A new version of the data file was downloaded, and I also worked to refactor the code to be more general and to allow for any state to be subset from the larger file.
 * 2020-08-29: It was originally downloaded for analysis.
