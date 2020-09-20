@@ -10,7 +10,7 @@
 # this should also create an output CSV file that is named based on the state
 # that is subset.
 # I then changed the script to iterate over a vector of state names.
-subset_mobility_data_to_state <- function(input_file_name,states_to_subset) {
+subset_data_to_state <- function(input_file_name, states_to_subset) {
   # read in the complete csv file
   all_covid_data <- read.csv(input_file_name)
   # iterate for loop over vector of state names
