@@ -6,10 +6,10 @@
 # dttsway@dons.usfca.edu
 # September 13, 2020
 
-# create a function to subset any US state out of the full dataset
+# create a function to subset any US state out of the full data
 # this should also create an output CSV file that is named based on the state
 # that is subset.
-
+# I then changed the script to iterate over a vector of state names.
 subset_mobility_data_to_state <- function(input_file_name,states_to_subset) {
   # read in the complete csv file
   all_covid_data <- read.csv(input_file_name)

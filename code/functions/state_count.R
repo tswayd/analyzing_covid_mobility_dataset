@@ -12,6 +12,7 @@
 # namely the state csv files that we already subset.
 # this should also create an output CSV file that is named based on the state
 # that is subset.
+# Changed the function to iterate over a vector of files.
 
 state_count <- function(input_file_names) {
   # load the package "dplyr"
