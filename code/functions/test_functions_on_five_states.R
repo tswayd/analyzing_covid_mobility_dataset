@@ -9,14 +9,19 @@ source("code/functions/state_count.R")
 
 states_to_subset <- c("Massachusetts", "Maine", "New Hampshire",
                       "Vermont", "Rhode Island")
-files_to_tally <- c("output/subset_function_outputs/applemobilitytrends-2020-09-12_Massachusetts.csv",
-                    "output/subset_function_outputs/applemobilitytrends-2020-09-12_Maine.csv",
-                    "output/subset_function_outputs/applemobilitytrends-2020-09-12_New Hampshire.csv",
-                    "output/subset_function_outputs/applemobilitytrends-2020-09-12_Vermont.csv",
-                    "output/subset_function_outputs/applemobilitytrends-2020-09-12_Rhode Island.csv")
+files_to_tally <- c(paste0("output/subset_function_outputs/",
+                           "applemobilitytrends-2020-09-12_Massachusetts.csv"),
+                    paste0("output/subset_function_outputs/",
+                           "applemobilitytrends-2020-09-12_Maine.csv"),
+                    paste0("output/subset_function_outputs/",
+                           "applemobilitytrends-2020-09-12_New Hampshire.csv"),
+                    paste0("output/subset_function_outputs/",
+                           "applemobilitytrends-2020-09-12_Vermont.csv"),
+                    paste0("output/subset_function_outputs/",
+                           "applemobilitytrends-2020-09-12_Rhode Island.csv"))
 
 subset_data_to_state("data/raw_data/applemobilitytrends-2020-09-12.csv",
-                              states_to_subset)
+                     states_to_subset)
 state_count(files_to_tally)
 
 # test is successful.
