@@ -8,7 +8,7 @@
 
 # create a function to subset any US state out of the full dataset
 # this should also create an output CSV file that is named based on the state
-# that is subsetted.
+# that is subset.
 subset_mobility_data_to_state <- function(input_file_name,
                                           state_to_subset) {
   # read in the complete csv file
