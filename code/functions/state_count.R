@@ -13,13 +13,15 @@
 # this should also create an output CSV file that is named based on the state
 # that is subset.
 
-state_count <- function(input_file_name) {
+state_count <- function(input_file_names) {
   # load the package "dplyr"
   library("dplyr")
-  # read in subset data csv
-  state_data <- read.csv(input_file_name)
-  # starting off with dplyr chains
-  count_cities_counties_by_type <- state_data %>%
+  # create a for loop to iterate over the files
+  for (input_file_name in input_file_names)
+    # read in subset data csv
+    state_data <- read.csv(input_file_names)
+    # starting off with dplyr chains
+    count_cities_counties_by_type <- state_data %>%
     select(geo_type, region, transportation_type) %>%
     group_by(geo_type, transportation_type) %>%
     tally()
@@ -27,7 +29,12 @@ state_count <- function(input_file_name) {
     stop("ERROR: file is missing one or two essential columns of data")
   }
   # write data as csv in output folder
-  write.csv(count_cities_counties_by_type, file = paste0("output/",
+  write.csv(count_cities_counties_by_type, 
+            file = paste0("output/cities_counties_tally/",
                           tools::file_path_sans_ext(basename(input_file_name)),
-                            "_city_county_count_by_type.csv"))
+                          "_city_county_count_by_type.csv"))
 }
+
+# test of function
+input_file_names <- c('output/testing_loop_function/applemobilitytrends-2020-09-17_California.csv')
+state_count(input_file_names)
