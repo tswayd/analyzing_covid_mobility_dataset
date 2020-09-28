@@ -1,0 +1,110 @@
+---
+title: "Analysis of COVID-era Apple Mobility Data"
+author: "Delong Tsway"
+date: "9/27/2020"
+output: html_document
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Setup
+
+```{r set-parameters}
+# set the state to work with
+state_to_analyze <- "Massachusetts"
+
+# sanitizing the state name for output files
+state_no_spaces <- gsub(state_to_analyze,
+                       pattern = " ",
+                       replacement = "_")
+
+# set the name of the global data file to use
+global_file_to_process <- "data/raw_data/applemobilitytrends-2020-09-17.csv"
+
+# extract core name for output file naming use
+core_name <- tools::file_path_sans_ext(basename(global_file_to_process))
+```
+
+```{r load-packages-functions}
+# load in the packages needed
+library("dplyr")
+library("readr")
+library("ggplot2")
+library("tidyr")
+library("lubridate")
+library("devtools")
+
+# load the functions needed
+source("code/functions/subset_mobility_data_to_state.R")
+source("code/functions/state_count.R")
+```
+
+## Background and Objectives
+
+This rmarkdown file will use 'ggplot2'[@ggplot2] and 'dplyr'[@dplyr] packages to analyze the Apple maps mobility data from the time before the COVID-19 pandemic through the initial shutdowns and the continuing changes over the course of the year.
+
+The goal will be to create a subset to a particular state, tally up the number of cities and counties in that state with mobility data, and then to make several plots to visualize those data subsets.
+
+The state that this document will analyze is `r state_to_analyze`.
+
+## Data Processing
+
+```{r subset-state}
+# subset out to the chosen state using the variable set above
+state_subset <- subset_data_to_state(
+  input_file_name = global_file_to_process,
+  states_to_subset = state_to_analyze)
+```
+
+```{r make-subset-long}
+# convert the subsetted state data from wide to long format
+long_subset <- convert_mobility_wide_to_long(
+  file_name_in = paste0("output/subset_function_outputs/",
+                        core_name,
+                        "_",
+                        state_no_spaces,
+                        ".csv")
+)
+```
+
+```{r tallied-subset}
+# tally up the numbers of cities and counties in the state that have mobility
+## data available
+tallied_subset <- state_count(
+  file_name_in = paste0("output/subset_function_outputs/",
+                        core_name,
+                        "_",
+                        state_no_spaces,
+                        ".csv")
+)
+```
+
+## Figures
+
+```{r plot-tallied}
+ # create a grouped bar graph of the tallied data to include in the knitted
+ # document, and save that figure to the output/figures directory as a png
+ tallied_plot <- ggplot(data = tallied_subset,
+                        aes(x = geo_type,
+                            y = n,
+                            fill = transportation_type)) +
+  geom_col(position = position_dodge()) +
+  labs(title = paste("Number of cities and/or counties in",
+                     state_to_analyze,
+                     "with mobility data"),
+       x = "Type of area",
+       y = "Number of areas")
+
+ggsave(plot = tallied_plot,
+       filename = paste0("output/figures",
+                         core_name,
+                         "_",
+                         state_no_spaces,
+                         "_tallied_plot.png"))
+
+tallied_plot
+```
+## Sources Cited
