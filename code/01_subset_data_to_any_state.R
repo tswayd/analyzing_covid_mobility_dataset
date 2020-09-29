@@ -2,6 +2,7 @@
 # and subset the data to just include rows from any particular US state
 # and then write out a csv file that only has that subset
 # uses functions in the code/function directory.
+# and notes
 
 # Delong Tsway
 # dttsway@dons.usfca.edu
