@@ -40,6 +40,7 @@ library("devtools")
 # load the functions needed
 source("code/functions/subset_mobility_data_to_state.R")
 source("code/functions/state_count.R")
+source("code/functions/convert_data_longer.R")
 ```
 
 ## Background and Objectives
@@ -60,21 +61,20 @@ state_subset <- subset_data_to_state(
 ```
 
 ```{r make-subset-long}
-# convert the subsetted state data from wide to long format
-long_subset <- convert_mobility_wide_to_long(
-  file_name_in = paste0("output/subset_function_outputs/",
+# convert the subset state data from wide to long format
+file_name_is <- paste0("output/subset_function_outputs/",
                         core_name,
                         "_",
                         state_no_spaces,
                         ".csv")
-)
+long_subset <- convert_data_longer(file_name_is)
 ```
 
 ```{r tallied-subset}
 # tally up the numbers of cities and counties in the state that have mobility
 ## data available
 tallied_subset <- state_count(
-  file_name_in = paste0("output/subset_function_outputs/",
+ file_name_in = paste0("output/subset_wide_data/",
                         core_name,
                         "_",
                         state_no_spaces,
