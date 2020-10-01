@@ -12,18 +12,19 @@
 # I then changed the script to iterate over a vector of state names.
 subset_data_to_state <- function(input_file_name, states_to_subset) {
   # read in the complete csv file
-  all_covid_data <- read.csv(input_file_name)
+  all_covid_data <- readr::read_csv(input_file_name)
   # iterate for loop over vector of state names
   for (state_to_subset in states_to_subset) {
     # subset the data set to only include rows where the sub.region column has
     # the state name in it.
-    state_data <- all_covid_data[all_covid_data$sub.region == state_to_subset, ]
+    stat_data <- all_covid_data %>% 
+      dplyr::filter(`sub-region` == state_to_subset)
     # check that the subset data actually has data in it
-    if (nrow(state_data) == 0) {
+    if (nrow(stat_data) == 0) {
       stop("ERROR: no rows matching given state name. Did you make a typo?")
     }
     # save the state data to a new csv file in the output directory
-    write.csv(state_data, file = paste0("output/subset_function_outputs/",
+    readr::write_csv(stat_data, path = paste0("output/subset_function_outputs/",
                                         tools::file_path_sans_ext(
                                           basename(input_file_name)),
                                         "_",
