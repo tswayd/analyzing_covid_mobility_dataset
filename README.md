@@ -7,10 +7,11 @@ The aim of this project is to analyze the mobility data made available by Apple.
 That data is available from the following URL:
 https://covid19.apple.com/mobility
 
-It currently uses dplyr to work with some of the tabular data. Eventually, it will also include use of ggplot2 to visuale the data.
+It currently uses dplyr to work with some of the tabular data. Eventually, it will also include use of ggplot2 to visualize the data.
 
 ### Log
 
+* 2020-10-01: Made a long Analysis Rmd and references.bib. Fixed up the functions to return object and remove spaces in output file. Fixed functions to also run specifically from the right package and other details.
 * 2020-09-19: Added second script to use dplyr to tally up the count of cities and counties in a given state that have data from different transportation types. Made that script into a function (state_count). Added a for loop to iterate over a vector of states in both functions (state_count),(subset_mobility_data_to_state).
 * 2020-09-19: Loaded latest data from Apple Mobility Covid data (09-17-2020).
 * 2020-09-16: Initial commit of README into repository. Eventually commited all files into repository. Remembered to connect to email for github instead of normal email.

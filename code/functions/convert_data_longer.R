@@ -7,10 +7,10 @@
 
 # pivot the dates into one column
 convert_data_longer <- function(file_name_in) {
-  # read_csv in the file 
+  # read_csv in the file
   covid_data <- readr::read_csv(file_name_in)
   # pivot_longer the data
-  new_covid_data = tidyr::pivot_longer(
+  new_covid_data <- tidyr::pivot_longer(
     data = covid_data,
     cols = starts_with("2020"),
     values_to = "relative_mobility",
@@ -29,4 +29,3 @@ convert_data_longer <- function(file_name_in) {
   return(new_covid_data)
 
 }
- 
