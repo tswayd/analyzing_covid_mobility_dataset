@@ -73,12 +73,12 @@ long_subset <- convert_data_longer(file_name_is)
 ```{r tallied-subset}
 # tally up the numbers of cities and counties in the state that have mobility
 ## data available
-input_file_names = paste0("output/subset_wide_data/",
+input_file_names <- paste0("output/subset_wide_data/",
                         core_name,
                         "_",
                         state_no_spaces,
                         "_long.csv")
-input_file = paste0("output/subset_wide_data/",
+input_file <- paste0("output/subset_wide_data/",
                         core_name,
                         "_",
                         state_no_spaces,
@@ -92,9 +92,9 @@ tallied_subset <- state_count(input_file)
  # create a grouped bar graph of the tallied data to include in the knitted
  # document, and save that figure to the output/figures directory as a png
 tallied_plot <- ggplot(data = tallied_subset,
-                       aes(x=geo_type,
-                           y=n,
-                           fill=transportation_type)) +
+                       aes(x = geo_type,
+                           y = n,
+                           fill = transportation_type)) +
   geom_col(position = position_dodge()) +
   labs(title = paste("Number of cities and/or counties in",
                      state_to_analyze,
@@ -118,7 +118,7 @@ timeseries_plot <- long_subset %>%
   filter(transportation_type == "driving") %>%
   group_by(dates) %>%
   summarize(mean_mobility = mean(relative_mobility)) %>%
-  ggplot(aes(x= lubridate::ymd(dates),
+  ggplot(aes(x = lubridate::ymd(dates),
              y = mean_mobility)) +
   geom_line() +
   labs(title = paste("Statewide mean relative mobility driving levels in",
@@ -126,32 +126,32 @@ timeseries_plot <- long_subset %>%
        x = "Date",
        y = "Mean relative mobility")
 ggsave(plot = timeseries_plot,
-       filename = paste0('output/figures/',
+       filename = paste0("output/figures/",
                          core_name,
-                         '_',
+                         "_",
                          state_no_spaces,
-                         '_timeseries_plot.png'))
+                         "_timeseries_plot.png"))
 timeseries_plot
 ```
 ```{r box-plot}
-regions <- unique(dplyr::pull(long_subset,region))[1:5]
+regions <- unique(dplyr::pull(long_subset, region))[1:5]
 box_plot <- long_subset %>%
   filter(transportation_type == "driving") %>%
   filter(region %in% regions) %>%
-  ggplot(aes(x=region,
+  ggplot(aes(x = region,
              y = relative_mobility)) +
   geom_boxplot() +
   labs(title = paste("Relative driving mobility in five regions of",
                      state_to_analyze, "during COVID"),
        x = "Region",
-       y = "Relative Mobility")+
+       y = "Relative Mobility") +
   geom_hline(yintercept = 100, color = "red")
 ggsave(plot = box_plot,
-       filename = paste0('output/figures/',
+       filename = paste0("output/figures/",
                          core_name,
-                         '_',
+                         "_",
                          state_no_spaces,
-                         '_box_plot.png'))
+                         "_box_plot.png"))
 box_plot
 
 ```
