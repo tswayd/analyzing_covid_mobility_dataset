@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE, message = TRUE)
 
 ```{r set-parameters}
 # set the state to work with
-state_to_analyze <- "New York"
+state_to_analyze <- "Massachusetts"
 
 # sanitizing the state name for output files
 state_no_spaces <- gsub(state_to_analyze,
@@ -43,7 +43,7 @@ source("code/functions/state_count.R")
 source("code/functions/convert_data_longer.R")
 ```
 
-## Background and Objectives
+## Project Description
 
 This rmarkdown file will use 'ggplot2'[@ggplot2] and 'dplyr'[@dplyr] packages to analyze the Apple maps mobility data from the time before the COVID-19 pandemic through the initial shutdowns and the continuing changes over the course of the year.
 
@@ -51,7 +51,7 @@ The goal will be to create a subset to a particular state, tally up the number o
 
 The state that this document will analyze is `r state_to_analyze`.
 
-## Data Processing
+## Subsetting Data
 
 ```{r subset-state}
 # subset out to the chosen state using the variable set above
@@ -133,5 +133,26 @@ ggsave(plot = timeseries_plot,
                          '_timeseries_plot.png'))
 timeseries_plot
 ```
+```{r box-plot of driving mobility by city}
+regions <- unique(dplyr::pull(long_subset,region))[1:5]
+box_plot <- long_subset %>%
+  filter(transportation_type == "driving") %>%
+  filter(region %in% regions) %>%
+  ggplot(aes(x=region,
+             y = relative_mobility)) +
+  geom_boxplot() +
+  labs(title = paste("Relative driving mobility in five regions of",
+                     state_to_analyze, "during COVID"),
+       x = "Region",
+       y = "Relative Mobility")+
+  geom_hline(yintercept = 100, color = "red")
+ggsave(plot = box_plot,
+       filename = paste0('output/figures/',
+                         core_name,
+                         '_',
+                         state_no_spaces,
+                         '_box_plot.png'))
+box_plot
 
+```
 ## Sources Cited
