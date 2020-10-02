@@ -14,13 +14,11 @@
 # that is subset.
 # Changed the function to iterate over a vector of files.
 
-state_count <- function(input_file_names) {
-  # load the package "dplyr"
-  library("dplyr")
+state_count <- function(input_file) {
   # loop code over the files
   for (input_file in input_file_names) {
     # read in subset data csv
-    state_data <- read.csv(input_file)
+    state_data <- readr::read_csv(input_file)
     # dplyr chains
     count_cities_counties_by_type <- state_data %>%
       select(geo_type, region, transportation_type) %>%
@@ -30,9 +28,10 @@ state_count <- function(input_file_names) {
       stop("ERROR: file is missing one or two essential columns of data")
       # write data as csv in output folder
     }
-    write.csv(count_cities_counties_by_type,
-              file = paste0("output/cities_counties_tally/",
+    readr::write_csv(count_cities_counties_by_type,
+              path = paste0("output/cities_counties_tally/",
                             tools::file_path_sans_ext(basename(input_file)),
                             "_count_by_type.csv"))
   }
+  return(count_cities_counties_by_type)
 }
