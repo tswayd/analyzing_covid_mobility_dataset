@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE, message = TRUE)
 
 ```{r set-parameters}
 # set the state to work with
-state_to_analyze <- "Massachusetts"
+state_to_analyze <- "Rhode Island"
 
 # sanitizing the state name for output files
 state_no_spaces <- gsub(state_to_analyze,
@@ -133,7 +133,7 @@ ggsave(plot = timeseries_plot,
                          '_timeseries_plot.png'))
 timeseries_plot
 ```
-```{r box-plot of driving mobility by city}
+```{r box-plot}
 regions <- unique(dplyr::pull(long_subset,region))[1:5]
 box_plot <- long_subset %>%
   filter(transportation_type == "driving") %>%
@@ -154,5 +154,9 @@ ggsave(plot = box_plot,
                          '_box_plot.png'))
 box_plot
 
+```
+## Session Info
+```{r session-info}
+devtools::session_info(pkgs = NULL, include_base = FALSE)
 ```
 ## Sources Cited
