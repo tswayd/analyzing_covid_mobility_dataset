@@ -24,12 +24,16 @@ subset_data_to_state <- function(input_file_name, states_to_subset) {
       stop("ERROR: no rows matching given state name. Did you make a typo?")
     }
     # save the state data to a new csv file in the output directory
+    state_no_spaces <- gsub(state_to_subset,
+                            pattern = " ",
+                            replacement = "_")
     readr::write_csv(stat_data, path = paste0("output/subset_function_outputs/",
                                         tools::file_path_sans_ext(
                                           basename(input_file_name)),
                                         "_",
-                                        state_to_subset,
+                                        state_no_spaces,
                                         ".csv"))
   }
+  return(stat_data)
 
 }
