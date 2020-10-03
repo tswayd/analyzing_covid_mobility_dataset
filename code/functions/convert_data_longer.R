@@ -1,9 +1,9 @@
 # convert all date columns to a single key column to tidy data using tidyverse
 # package
 
-#
-#
-#
+# Delong Tsway
+# dttsway@dons.usfca.edu
+# October 2nd, 2020
 
 # pivot the dates into one column
 convert_data_longer <- function(file_name_in) {
