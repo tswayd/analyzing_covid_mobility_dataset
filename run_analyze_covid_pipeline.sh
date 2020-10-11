@@ -18,6 +18,11 @@ then
   exit 1
 fi
 
+state=$1
+state=${state// /_}
+
 Rscript -e "rmarkdown::render('Analysis.Rmd',\
             params = list(state = '$1',\
-            data = '$2'))"
+            data = '$2'),\
+            output_dir = 'output',\
+            output_file = 'Analysis_$state')"
