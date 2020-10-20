@@ -1,0 +1,14 @@
+ Make good use of defensive programming (check to make sure there is a command line argument, like we did for last assignment, and if there isn't one or there is more than one, print out some helpful messages).
+Use lots of commenting in the code, and numerous `echo` statements to 
+provide context for the quantitative output and to orient the user. Use 
+`zcat` and `zgrep` (which are like the normal `cat` and `grep` but can 
+work directly with compressed files) in combination with other tools 
+(e.g. sort, uniq, cut, awk, bioawk, etc), connected by pipes, to process 
+the compressed file directly, without decompressing it or moving it from 
+its original location. Calculate and report out the total number of 
+sequences in the file. Tally up the number of SARS-CoV-2 sequences in 
+the dataset from each country and sort this output from largest to 
+smallest. OPTIONAL: If you want to challenge yourself, have your script 
+also count up the number of sequences in the file that have more than 
+29,000 base pairs in them (this is close to the length of the full 
+SARS-CoV-2 genome) and the number that have less than 29,000 base pairs.
