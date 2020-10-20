@@ -7,3 +7,6 @@
 # country sorted from largest to smallest. (OPTIONAL) Code to count up 
 # sequences that have more than 29K base pairs and sequences that have 
 # less than 29K base pairs.
+
+# Initialize commit into new git branch "analyze-sequences"
+
