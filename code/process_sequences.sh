@@ -10,3 +10,5 @@
 
 # Initialize commit into new git branch "analyze-sequences"
 
+# Realized that to see the branch on GitHub I needed to do "git push 
+# origin analyze-sequences"
