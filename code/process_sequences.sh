@@ -25,17 +25,17 @@ echo "There is more than the one require argument provided"
 exit 1
 fi
 # echo statement to describe contents:
-echo "This is some information about the sequences from the Sars-Cov-2 database"
+echo "This is some information about the sequences from the Sars-Cov-2 database" > output/SeqSort.txt
 
 # code to count total number of sequences in file
-echo "\Number of sequences in file:" > output/SeqSort.txt
+echo "Number of sequences in file:" >> output/SeqSort.txt
 bioawk -cfastx 'END{print NR}' $FILE | tee -a output/SeqSort.txt 
 
 # code to parse out sequences by country, count by unique value, and then sort in descending order
-echo "\Number of sequences by country in descending order:" >> output/SeqSort.txt
+echo "Number of sequences by country in descending order:" >> output/SeqSort.txt
 bioawk -c fastx '{print $4}' $FILE | awk '{split($0,a,"|");print a[3]}' | sort | uniq -c | sort -nr | tee -a output/SeqSort.txt
 
 # code to count number of sequences below and above 29,000 bp 
-bioawk -cfastx 'BEGIN{shorter = 0} {if (length($2) < 29000) shorter += 1} END {print "\Number of sequences shorter than 29K bp:", shorter}' $FILE | tee -a output/SeqSort.txt
-bioawk -cfastx 'BEGIN{longer = 0} {if (length($2) >= 29000) longer += 1} END {print "\Number of sequences longer than 29K bp:" longer}' $FILE | tee -a output/SeqSort.txt
+bioawk -cfastx 'BEGIN{shorter = 0} {if (length($2) < 29000) shorter += 1} END {print "Number of sequences shorter than 29K bp:", shorter}' $FILE | tee -a output/SeqSort.txt
+bioawk -cfastx 'BEGIN{longer = 0} {if (length($2) >= 29000) longer += 1} END {print "Number of sequences equal to or longer than 29K bp:" longer}' $FILE | tee -a output/SeqSort.txt
 
