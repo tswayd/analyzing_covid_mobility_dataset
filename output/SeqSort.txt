@@ -70,4 +70,5 @@ Number of sequences by country in descending order:
       1 Nepal
       1 Finland
 Number of sequences shorter than 29K bp	688
-Number of sequences longer than 29K bp	28155
+Number of sequences longer than 29K bp28155
+
