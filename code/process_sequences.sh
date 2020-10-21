@@ -16,5 +16,10 @@ bioawk -cfastx 'END{print NR}' /blast-db/sars-cov-2-seq-data/2020-10-15_ncbi_sar
 bioawk -c fastx '{print $comment}' /blast-db/sars-cov-2-seq-data/2020-10-15_ncbi_sars_cov_2_sequences.fasta.gz | awk 
 '{split($0,a,"|");print a[3]}' | sort | uniq -c | sort -nr
 
-# code to count number of sequences below 29,000 bp and above 29,000 bp
+# code to count number of sequences below 29,000 bp 
+bioawk -cfastx 'BEGIN{shorter = 0} {if (length($seq) < 29000) shorter += 1} END {print "shorter sequences", shorter}' 
+/blast-db/sars-cov-2-seq-data/2020-10-15_ncbi_sars_cov_2_sequences.fasta.gz
 
+# code to count number of sequences equal to or above 29,000 bp
+bioawk -cfastx 'BEGIN{longer = 0} {if (length($seq) >= 29000) longer += 1} END {print "longer sequences", longer}' 
+/blast-db/sars-cov-2-seq-data/2020-10-15_ncbi_sars_cov_2_sequences.fasta.gz
