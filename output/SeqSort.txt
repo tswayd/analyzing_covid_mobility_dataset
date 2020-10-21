@@ -1,6 +1,7 @@
-Number of sequences in file:
+This is some information about the sequences from the Sars-Cov-2 database
+\Number of sequences in file:
 28843
-Number of sequences by country in descending order:
+\Number of sequences by country in descending order:
   16984 USA
    5562 Australia
    2708 
@@ -69,6 +70,5 @@ Number of sequences by country in descending order:
       1 New Zealand
       1 Nepal
       1 Finland
-Number of sequences shorter than 29K bp	688
-Number of sequences longer than 29K bp28155
-
+Number of sequences shorter than 29K bp:	688
+Number of sequences longer than 29K bp:28155
