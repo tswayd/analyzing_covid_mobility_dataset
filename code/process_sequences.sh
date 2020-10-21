@@ -1,14 +1,16 @@
+#!/bin/bash
+
 # Delong Tsway
 # dttsway@dons.usfca.edu
 # 2020-10-18
 
-# Code to calculate and reporte the total number of sequences in this 
-# file. Code to tally up the number of sequences in this data from each 
-# country sorted from largest to smallest. (OPTIONAL) Code to count up 
-# sequences that have more than 29K base pairs and sequences that have 
-# less than 29K base pairs.
+#!/bin/bash
 
-# Initialize commit into new git branch "analyze-sequences"
+# code to count total number of sequences in file
+zgrep -c ">" /blast-db/sars-cov-2-seq-data/2020-10-15_ncbi_sars_cov_2_sequences.fasta.gz 
 
-# Realized that to see the branch on GitHub I needed to do "git push 
-# origin analyze-sequences"
+# code to parse out sequences by country, count by unique value, and then sort in descending order
+bioawk -c fastx '{print $comment}' /blast-db/sars-cov-2-seq-data/2020-10-15_ncbi_sars_cov_2_sequences.fasta.gz | awk 
+'{split($0,a,"|");print a[3]}' | sort | uniq -c | sort -nr
+
+# code to 
