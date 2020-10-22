@@ -27,12 +27,12 @@ echo "This is some information about the sequences from the Sars-Cov-2 database"
 
 # code to count total number of sequences in file
 echo "Number of sequences in file:"
-bioawk -c fastx 'END{print NR}' $# 
+bioawk -c fastx 'END{print NR}' $1
 
 # code to parse out sequences by country, count by unique value, and then sort in descending order
 echo "Number of sequences by country in descending order:"
-bioawk -c fastx '{print $4}' $# | awk '{split($0,a,"|");print a[3]}' | sort | uniq -c | sort -nr
+bioawk -c fastx '{print $4}' $1 | awk '{split($0,a,"|");print a[3]}' | sort | uniq -c | sort -nr
 
 # code to count number of sequences below and above 29,000 bp 
-bioawk -c fastx 'BEGIN{shorter = 0} {if (length($2) < 29000) shorter += 1} END {print "Number of sequences shorter than 29K bp:", shorter}' $#
-bioawk -c fastx 'BEGIN{longer = 0} {if (length($2) >= 29000) longer += 1} END {print "Number of sequences equal to or longer than 29K bp:" longer}' $#
+bioawk -c fastx 'BEGIN{shorter = 0} {if (length($2) < 29000) shorter += 1} END {print "Number of sequences shorter than 29K bp:", shorter}' $1
+bioawk -c fastx 'BEGIN{longer = 0} {if (length($2) >= 29000) longer += 1} END {print "Number of sequences equal to or longer than 29K bp:" longer}' $1
