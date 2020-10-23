@@ -11,7 +11,7 @@ It currently uses dplyr to work with some of the tabular data. Eventually, it wi
 
 ### Log
 
-* 2020-10-22: Connected to USF VPN and tule server to access blast-db/sars-cov2 data files. Wrote a bash script to analyze file for number of sequences, order by country, and amount above/below 29K bp. Redirected output into a text file.
+* 2020-10-22: Connected to USF VPN and tule secure shell to access blast-db/SARS-cov2 data files. Wrote a bash script to analyze file for number of sequences, order by country, and amount above/below 29K bp. Redirected output into a text file.
 * 2020-10-11: Parameterize Rmd and add bash script to drive knitting.
 * 2020-10-01: Made a long Analysis Rmd and references.bib. Fixed up the functions to return object and remove spaces in output file. Fixed functions to also run specifically from the right package and other details.
 * 2020-09-19: Added second script to use dplyr to tally up the count of cities and counties in a given state that have data from different transportation types. Made that script into a function (state_count). Added a for loop to iterate over a vector of states in both functions (state_count),(subset_mobility_data_to_state).
