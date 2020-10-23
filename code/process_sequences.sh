@@ -13,7 +13,7 @@
 
 if [ $# -eq 0 ]
 then
- echo "There needs to be a path to a compressed blast-db file as input for this script."
+ echo "There needs to be a path to a compressed fastx file as input for this script."
 exit 1
 fi
 
@@ -23,7 +23,7 @@ then
 exit 1
 fi
 # echo statement to describe contents:
-echo "This is some information about the sequences for SARS-Cov-2 from BLAST."
+echo "This is some information about the sequences for SARS-Cov-2 from NCBI."
 
 # code to count total number of sequences in file
 echo "Number of sequences in file:"
