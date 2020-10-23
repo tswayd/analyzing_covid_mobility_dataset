@@ -13,7 +13,7 @@
 
 if [ $# -eq 0 ]
 then
- echo "There needs to be a path to a compressed fastx file as input for this script."
+ echo "There needs to be a path to a compressed fasta file as input for this script."
 exit 1
 fi
 
