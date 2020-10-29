@@ -9,7 +9,7 @@ set -euo pipefail
 # data csv file downloaded from apple.com
 
 # Delong Tsway
-# October 11, 2020
+# October 28, 2020
 # dttsway@dons.usfca.edu
 
 if [ $# -eq 0 ]
