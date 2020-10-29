@@ -1,4 +1,4 @@
-This is some information about the sequences from the Sars-Cov-2 database
+This is some information about the sequences for SARS-Cov-2 from NCBI.
 Number of sequences in file:
 28843
 Number of sequences by country in descending order:
