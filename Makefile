@@ -7,7 +7,7 @@ REPORT_PATH	:= $(OUTPUT)/$(REPORT)
 R_FUNCTIONS	:= $(wildcard code/functions/*.R)
 MOBILITY_DATA	:= data/raw_data/applemobilitytrends-2020-09-17.csv
 SEQ_DATA	:= /blast-db/sars-cov-2-seq-data/2020-10-15_ncbi_sars_cov_2_sequences.fasta.gz
-SEQ_SUMMARY	:= $(OUTPUT)/sequence_summary.txt
+SEQ_SUMMARY	:= $(OUTPUT)/analyze_covid_blast-db.txt
 
 all: $(REPORT_PATH)
 
@@ -24,5 +24,6 @@ clean:
 	rm -fv output/*/*.csv
 	rm -fv output/*/*.png
 	rm -fv output/*/*/*.png
+	rmdir -fv output/Analysis_$state
 
 .PHONY: all clean
