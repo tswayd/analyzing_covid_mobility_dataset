@@ -24,6 +24,5 @@ clean:
 	rm -fv output/*/*.csv
 	rm -fv output/*/*.png
 	rm -fv output/*/*/*.png
-	rmdir -fv output/Analysis_$state
 
 .PHONY: all clean
