@@ -11,6 +11,7 @@ It currently uses dplyr to work with some of the tabular data. Eventually, it wi
 
 ### Log
 
+* 2020-11-16: For my final project I intend to 
 * 2020-10-28: Refactored code/process_sequences.sh to only produce all outputs by addition of the argument "ALL". Otherwise to only produce a list of countries by number of sequences without second argument. Add the output of this script as a third variable to the Analysis.Rmd and run-analysis.sh. And then funneled all of that into a Makefile.
 * 2020-10-22: Connected to USF VPN and tule secure shell to access blast-db/SARS-cov2 data files. Wrote a bash script to analyze file for number of sequences, order by country, and amount above/below 29K bp. Redirected output into a text file.
 * 2020-10-11: Parameterize Rmd and add bash script to drive knitting.
